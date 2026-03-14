@@ -1,11 +1,12 @@
 const express = require("express")
 const noteModel = require("./models/note.model")
 const cors = require("cors")
+const path = require("path")
 
 const app = express()
 app.use(cors())
 app.use(express.json())
-
+app.use(express.static("./public"))
 
 // Create note 
 
@@ -17,7 +18,7 @@ app.post("/notes",async (req,res) => {
     })
     
     res.status(201).json({
-        message:"note xreated successfully",
+        message:"note created successfully",
         note
     })
 })
@@ -56,6 +57,12 @@ app.patch("/api/notes/:id", async (req,res) => {
     res.status(200).json({
         message: "Note updated successfully"
     })
+})
+
+console.log(__dirname);
+
+app.use("*name", (req,res) => {
+    res.sendFile(path.join(__dirname, "..", "/public/index.html"))
 })
 
 
