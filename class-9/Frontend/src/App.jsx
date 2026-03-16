@@ -9,7 +9,7 @@ function App() {
   
   function fetchNotes(){
 
-    axios.get('http://localhost:3000/notes')
+    axios.get('https://learning-backend-tyzl.onrender.com/notes')
     .then((res) => {
       setNotes(res.data.notes)
     })
@@ -26,7 +26,7 @@ function App() {
 
     console.log(title.value ,description.value);
     
-    axios.post("http://localhost:3000/notes",{
+    axios.post("https://learning-backend-tyzl.onrender.com/notes",{
       title:title.value,
       description:description.value
     })
@@ -39,7 +39,7 @@ function App() {
   }
 
   function handleDeleteNote(noteId){
-    axios.delete("http://localhost:3000/api/notes/"+noteId)
+    axios.delete("https://learning-backend-tyzl.onrender.com/api/notes/"+noteId)
     .then(res => {
       console.log(res.data);
       fetchNotes()
@@ -50,7 +50,7 @@ function App() {
 
     const newDescription = prompt("Enter new description")
 
-    axios.patch("http://localhost:3000/api/notes/"+noteId,{
+    axios.patch("https://learning-backend-tyzl.onrender.com/api/notes/"+noteId,{
       description:newDescription
     })
     .then(res => {
