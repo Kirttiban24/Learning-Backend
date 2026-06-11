@@ -18,7 +18,8 @@ const userSchema = new mongoose.Schema({
     bio: String,
     profileImages: {
         type: String, 
-    }
+    },
+
 })
 
 const userModel = mongoose.model("User", userSchema)
