@@ -31,7 +31,6 @@ async function createPostController(req, res) {
 
 async function getPostController(req, res) {
 
-
     const userId = req.user.id
 
     const posts = await postModel.find({
