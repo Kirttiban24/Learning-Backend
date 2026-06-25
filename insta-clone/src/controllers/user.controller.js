@@ -68,7 +68,54 @@ async function unfollowUserController (req, res) {
     })
 }
 
+
+async function getPendingRequestsController (req,res) {
+    const username = req.user.username
+
+    const pendingRequests = await followModel.find({
+        following: username,
+        status: "pending"
+    })
+
+    if(!pendingRequests) {
+        return res.status(404).json({
+            message: "No pending requests found"
+        })
+    }
+
+    res.status(200).json({
+        message: "Pending requests retrieved successfully",
+        pendingRequests: pendingRequests
+    })
+}
+
+async function acceptFollowRequestController (req, res) {
+    const username = req.user.username
+    const followerUsername = req.params.username
+
+    const followRequest = await followModel.findOne({
+        following: username,
+        follower: followerUsername,
+        status: "pending"
+    })
+
+    if(!followRequest) {
+        return res.status(404).json({
+            message: "Follow request not found"
+        })
+    }
+
+    followRequest.status = "accepted"
+    await followRequest.save()
+
+    res.status(200).json({
+        message: "Follow request accepted successfully"
+    })
+}
+
 module.exports = {
     followUserController,
-    unfollowUserController
+    unfollowUserController,
+    getPendingRequestsController,
+    acceptFollowRequestController
 }

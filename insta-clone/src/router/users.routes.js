@@ -20,5 +20,19 @@ userRouter.post("/follow/:username", identifyUser, userController.followUserCont
 */
 userRouter.post("/unfollow/:username", identifyUser, userController.unfollowUserController)
 
+/**
+ * @route GET /api/users/pending-requests
+ * @description Get pending follow requests for the logged-in user
+ * @access Private
+*/
+userRouter.get("/pending-requests", identifyUser, userController.getPendingRequestsController)
+ 
+
+/**
+ * @route POST /api/users/accept-request/:username
+ * @description Accept a follow request from a user
+ * @access Private
+*/
+userRouter.post("/accept-request/:username", identifyUser, userController.acceptFollowRequestController)
 
 module.exports = userRouter;
