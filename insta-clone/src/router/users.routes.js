@@ -35,4 +35,11 @@ userRouter.get("/pending-requests", identifyUser, userController.getPendingReque
 */
 userRouter.post("/accept-request/:username", identifyUser, userController.acceptFollowRequestController)
 
+/**
+ * @route POST /api/users/reject-request/:username
+ * @description Reject a follow request from a user
+ * @access Private
+*/
+userRouter.post("/reject-request/:username", identifyUser, userController.rejectFollowRequestController)
+
 module.exports = userRouter;
