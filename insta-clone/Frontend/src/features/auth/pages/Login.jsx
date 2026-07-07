@@ -9,7 +9,7 @@ const Login = () => {
 const [username, setUsername] = useState("")
 const [password, setPassword] = useState("")
 
-const { handleLogin, loading } = useAuth()
+const { user, loading, handleLogin } = useAuth()
 const navigate = useNavigate()
 
 
@@ -22,7 +22,7 @@ if (loading) {
 async function handleSubmit(e){
     e.preventDefault()
 
-    handleLogin(username, password)
+  await handleLogin(username, password)
     .then (res=> {
       console.log(res);
       navigate('/')
@@ -46,7 +46,7 @@ async function handleSubmit(e){
                   name='password'
                   placeholder='Enter Password' 
                 />
-                <button type="submit">Submit</button>
+                <button className='button primary-button' type="submit">Submit</button>
             </form>
 
             <p>Don't have an account? <Link className='toggleAuthForm' to="/register">Register</Link></p>
