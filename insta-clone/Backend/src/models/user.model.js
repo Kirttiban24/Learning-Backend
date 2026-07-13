@@ -17,8 +17,9 @@ const userSchema = new mongoose.Schema({
         select: false
     },
     bio: String,
-    profileImages: {
+    profileImage: {
         type: String, 
+        default: "https://ik.imagekit.io/i4pjkric2/insta-clone-posts/user.png?updatedAt=1783880245239"
     },
 
 })
