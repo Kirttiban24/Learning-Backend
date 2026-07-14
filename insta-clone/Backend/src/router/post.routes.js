@@ -30,6 +30,9 @@ postRouter.get("/details/:postId", identifyUser , postController.getPostDetailsC
  */
 postRouter.post("/like/:postId", identifyUser, postController.likePostController)
 
+postRouter.post("/unlike/:postId", identifyUser, postController.unLikePostController)
+
+
 /**
  * @route Get /api/posts/feed
  * @description Get all the post created in the DB
